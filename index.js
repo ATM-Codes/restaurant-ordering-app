@@ -4,6 +4,11 @@ const feedContainer = document.getElementById('feed');
 const orderContainer = document.getElementById('order');
 const orderList = document.getElementById('order_list');
 const totalAmount = document.getElementById('total_amount')
+const modal = document.getElementById('modal')
+const modalCloseBtn = document.getElementById('modal-close-btn')
+const completeBtn = document.getElementById('complete_btn')
+const paymentForm = document.getElementById('payment-form')
+const modalText = document.getElementById('modal-text')
 
 feedContainer.addEventListener('click', (e) => {
     if(e.target.classList.contains('add_btn')){
@@ -22,6 +27,13 @@ orderContainer.addEventListener('click',(e)=>{
     }
 })
 
+completeBtn.addEventListener('click', function(){
+    modal.style.display='inline'
+})
+
+modalCloseBtn.addEventListener('click', function(){
+    modal.style.display='none'
+})
 
 function getFeedHtml(){
     
@@ -122,6 +134,37 @@ function removeItem(id, event){
     }
 }
 
+
+paymentForm.addEventListener('submit', function(e){
+    e.preventDefault()
+    
+    const paymentFormData = new FormData(paymentForm)
+    const fullName = paymentFormData.get('fullName')
+    
+    modalText.innerHTML = `
+    <div class="modal-inner-loading">
+        <img src="images/loading.svg" class="loading">
+        <p id="upload-text">Uploading your data to the dark web...</p>
+    </div>` 
+    
+    setTimeout(function(){
+        document.getElementById('upload-text').innerText = `
+        Making the sale...`
+    }, 1500)
+    
+    
+    setTimeout(function(){
+        document.getElementById('modal-inner').innerHTML = `
+        <h2>Thanks <span class="modal-display-name">${fullName}</span>, you sucker! </h2>
+        <p>We just sold the rights to your eternal soul.</p>
+        <div class="idiot-gif">
+            <img src="images/pirate.gif">
+        </div>
+    `
+    modalCloseBtn.disabled = false
+    }, 3000)
+  
+}) 
 
 function render(){
     feedContainer.innerHTML = getFeedHtml()

@@ -22,7 +22,26 @@
                 <h1>Total price:</h1>
                 <h2 id="total_amount"></h2>
             </div>
+            <button name="complete_btn" type="button" class="complete_btn" id="complete_btn">
+                Complete Order
+            </button>
         </section>
+        <div class="modal" id="modal">
+            <div class="modal-inner" id="modal-inner">
+              <div class="close-modal-btn-container">
+			    <button class="modal-close-btn" id="modal-close-btn">X</button>
+		       </div>
+                <h2>Enter you Card Details</h2>
+                <form id="payment-form">
+                    <input type="text" name="fullName" placeholder="Enter your name" required/>
+                    <input type="text" name="cardNumber" placeholder="Enter card number" required/>
+                    <input type="text" name="cvv" placeholder="Enter cvv" required/>
+                    <div class="modal-choice-btns" id="modal-choice-btns">
+                        <button type="submit" class="modal-btn">Pay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 	    <script type="module" src="index.js"></script>
     </body>
 </html>
