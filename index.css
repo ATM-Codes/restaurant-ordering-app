@@ -6,15 +6,23 @@ html, body {
     font-family: 'Smythe';
     font-weight: 400;
     padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    margin-bottom: 10rem;
+    
 } 
 
 #title_section{
     color: white;
-    padding: 2rem;
+    padding: 2rem 2rem 2rem 10rem;
     background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(/images/title_bg.jpg);
     background-size: cover;
     background-position: center;   /* Centers the image */
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;  
+    width:100%;  
+    
 }
 
 #feed{
@@ -142,6 +150,7 @@ html, body {
 /* utility */
 .hidden{
   display: none;
+  
 }
 
 .flex{
@@ -240,4 +249,14 @@ input[type=text], select {
     color: whitesmoke;
     opacity: 0.2;
     cursor: not-allowed;
+}
+
+/*Thank you message*/
+.thankyou_message{
+  background-color:red;
+  width: 80%;
+  margin: 0;
+  padding: auto;
+  align-content: center;
+  text-align: center;
 }

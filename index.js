@@ -23,7 +23,7 @@ orderContainer.addEventListener('click',(e)=>{
     if(e.target.classList.contains('remove_btn')){
          const itemId = parseInt(e.target.dataset.id, 10);
          console.log(`removeButton was clicked: ${itemId}`)
-         removeItem(itemId ,e)
+         removeItem(e)
     }
 })
 
@@ -115,7 +115,7 @@ function addItemsTotal(id){
     return tempTotal
 }
 
-function removeItem(id, event){
+function removeItem(event){
      
      let tempTotal = totalAmount.innerText
      console.log("Current Total", tempTotal)
@@ -134,7 +134,6 @@ function removeItem(id, event){
     }
 }
 
-
 paymentForm.addEventListener('submit', function(e){
     e.preventDefault()
     
@@ -149,7 +148,7 @@ paymentForm.addEventListener('submit', function(e){
     
     setTimeout(function(){
         document.getElementById('upload-text').innerText = `
-        Making the sale...`
+        Payment Being Made...`
     }, 1500)
     
     
