@@ -11,35 +11,50 @@ const formTextSec = document.getElementById('form-text-section')
 const paymentForm = document.getElementById('payment-form')
 const thankYouContainer = document.getElementById('thankyou_message')
 
+//Function to retrieve object with id
+function getFoodItemById(stringId) {
+    let targetId = parseInt(stringId, 10);
+    return menuArray.find(function(food) {
+        return food.id === targetId;
+    });
+}
+
+// Add button function
 feedContainer.addEventListener('click', (e) => {
     if(e.target.classList.contains('add_btn')){
         let id = e.target.dataset.id;
-        console.log(`Button clicked for item id: ${id}`)
         orderList.innerHTML = getOrderHtml(id)
         totalAmount.innerText = addItemsTotal(id)
     }
     })
 
+// Remove button function
 orderContainer.addEventListener('click',(e)=>{
     if(e.target.classList.contains('remove_btn')){
          const itemId = parseInt(e.target.dataset.id, 10);
-         console.log(`removeButton was clicked: ${itemId}`)
          removeItem(e)
     }
 })
 
+
+//Complete order button brings back the form
 completeBtn.addEventListener('click', function(){
     modal.style.display='inline'
 })
 
+
+
+//Form close button closes the form
 modalCloseBtn.addEventListener('click', function(){
     modal.style.display='none'
 })
 
+//The method to get all the menu items listed
 function getFeedHtml(){
     
     let feedHtml = ``
     
+    //looping through each object from the menuArray
     menuArray.forEach(function(food){           
         feedHtml += `
             <div class="product_card">
@@ -59,24 +74,13 @@ function getFeedHtml(){
    return feedHtml 
 }
 
-function getFoodItemById(stringId) {
-
-    let targetId = parseInt(stringId, 10);
-    console.log("Item id at getFoodByItem is:",targetId)
-    return menuArray.find(function(food) {
-        return food.id === targetId;
-    });
-}
 
 
+//Function to add items to order
 function getOrderHtml(id){
     let orderListHtml = orderList.innerHTML
-    let totalText = totalAmount.innerText
-    let orderListCharCount = orderListHtml.length
-    // console.log("order list count:", orderListCharCount) 
-    // console.log("Id at getorderHTML", id)
+
     let item = getFoodItemById(id)
-    // console.log("Item at getorderHtml: ",item)
     if(orderContainer.classList == 'hidden'){
             orderContainer.classList.toggle('flex')
             orderListHtml+=
@@ -86,8 +90,7 @@ function getOrderHtml(id){
                         <button class="remove_btn" data-id=${item.id}>Remove</button>
                     </div>
                     <h2>\n$ ${item.price}</h2>
-                </div>`
-    
+                </div>`    
     }else{
             orderListHtml+=
             `<div class="order_line" data-price=${item.price}>
@@ -103,41 +106,43 @@ function getOrderHtml(id){
 }
 
 
+//function to add up the item prices
 function addItemsTotal(id){
     let tempTotal = totalAmount.innerText
+    
     let item = getFoodItemById(id)
     if(tempTotal.length==0){
-        tempTotal = item.price
+        tempTotal = parseInt(item.price)
      }else{
+        tempTotal=Number(tempTotal.replace("$", ""))
         tempTotal = parseInt(tempTotal)+item.price
      }
-    console.log(`Total amount in text after assigning ${tempTotal}`)
-    
-    return tempTotal
+    return `\$${tempTotal}`
 }
 
+//function for the remove button
 function removeItem(event){
-     
      let tempTotal = totalAmount.innerText
      console.log("Current Total", tempTotal)
      let targetItem = event.target.closest('.order_line')
      console.log(targetItem.dataset.price)
       if(targetItem){
-        tempTotal = tempTotal - parseInt(targetItem.dataset.price, 10)
+        tempTotal = Number(tempTotal.replace("$", "")) - parseInt(targetItem.dataset.price, 10)
         console.log("Total after removing item:", tempTotal)
         targetItem.remove()
         totalAmount.innerText = tempTotal
         }
     if(orderList.innerHTML.trim()==="" )
     {
+      totalAmount.innerText=""
       orderContainer.classList.remove('flex')
       orderContainer.classList.add('hidden')
     }
 }
 
+// payment form submit button action
 paymentForm.addEventListener('submit', function(e){
     e.preventDefault()
-    
     const paymentFormData = new FormData(paymentForm)
     const fullName = paymentFormData.get('fullName')
     
@@ -146,18 +151,17 @@ paymentForm.addEventListener('submit', function(e){
         formTextSec.innerHTML = `
         <img src="images/loading.svg" class="loading">
         <p id="payment-text">Payment Being Made...</p>`
-    }, 1500)
+    }, 1500)//This section is not working for some reason. Need to look into it
     
     modal.style.display='none'
     
       thankYouContainer.innerHTML = `
-        <h1>Thanks, ${fullName}! Your order is on it way!</h1>` 
+        <h1 class="thank_you_text">Thanks, ${fullName}! Your order is on it way!</h1>` 
 
 }) 
 
 function render(){
     feedContainer.innerHTML = getFeedHtml()
 }
-
 
 render()

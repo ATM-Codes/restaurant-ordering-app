@@ -11,7 +11,7 @@ html, body {
     margin-bottom: 10rem;
     
 } 
-
+/* Title Section */
 #title_section{
     color: white;
     padding: 2rem 2rem 2rem 10rem;
@@ -22,46 +22,37 @@ html, body {
     width:100%;  
     
 }
-
+/* Order feed section */
 #feed{
-    padding: 2rem 0rem;
-    display: flex;
+    padding: 0rem;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-#order{
-    padding: 2rem 0rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around; 
+    width: 60%; /*this line made the feed responsive*/ 
 }
 
 .product_card{
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   margin: 10px;
   justify-content: space-between;
   border-bottom: 3px solid #DEDEDE;
-  width:100%;
-  padding: 2rem 2rem 2rem 2rem;
+  width: 150%;
+}
+
+.prod_name{
+  font-size: 2.3rem;
 }
 
 .pc_left_align{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: 10rem;
   justify-content: space-around;
-  padding-left: 5rem;
-  margin-left: 5rem;
 }
 
-.pc_right_align{
-
-}
 
 .product_details{
     text-align: left;
@@ -94,10 +85,12 @@ html, body {
 /* Order section styling*/
 #order{ 
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   margin: 0 auto;
-}
+  padding: 2rem 0rem;
+  align-items: center;
+  justify-content: space-around;
+  }
 
 #order_list{
   display:flex;
@@ -115,6 +108,7 @@ html, body {
   align-items: center;
   margin-bottom: 15px;
   width: 75%;
+  font-size: 1.3rem;
 }
 
 .order_name{
@@ -123,15 +117,19 @@ html, body {
   align-items: center;
   vertical-align: center;
   gap: 15%;
-  justify-content: space-around;   
+  justify-content: space-around;
+  font-size: 1.3rem;
+  font-weight: lighter;
 }
 
 
 .remove_btn {
-  font-family: "Verdana, Geneva, Tahoma, sans-serif";
-  color: #8B8B8B;
+  font-family: "Verdana";
   font-weight: 400;
   font-size: 80%;
+  color: #FB7185;
+  border: 0;
+  background-color: transparent;
 }
 
 .order_divider {
@@ -142,32 +140,25 @@ html, body {
   margin: 15px 0;             
 }
 
+/*Total Section*/
 #total{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  font-size: 1.3rem;
 }
 
-/* utility */
-.hidden{
-  display: none;
-  
-}
-
-.flex{
-    display: flex;
-}
-
-/*omplete order btn*/
+/*Complete order btn*/
 .complete_btn{
   width: 85%;
-  background-color: greenyellow;
+  background-color: #16DB99;
+  color: white;
   border: none;
-  padding: 10px;
-  font-family: "Verdana, Geneva, Tahoma, sans-serif";
-  font-weight: 400;
+  padding: 20px;
+  font-family: "Verdana";
+  font-weight: 600;
 }
 
 /*form styling*/
@@ -213,21 +204,22 @@ input[type=text], select {
 
 .modal-btn {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #16DB99;
   color: white;
   padding: 14px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.modal-btn:hover {
-  background-color: #45a049;
+  font-weight: bold;
 }
 
 /*modal-cls button*/
 /* modal buttons */
+
+.modal-btn:hover {
+  background-color: #45a049;
+}
 
 .close-modal-btn-container{
     text-align: right;
@@ -256,15 +248,31 @@ input[type=text], select {
 
 /*Thank you message*/
 .thankyou_message{
-  background-color:red;
+  background-color:#ECFDF5;
   width: 80%;
   margin: 0;
   padding: auto;
   align-content: center;
   text-align: center;
+
+}
+
+.thank_you_text{
+  color: #065F46;
+  font-weight: normal;
 }
 
 .loading{
     width: 100%; 
     margin-top: 10px;
 }
+
+/* utility */
+.hidden{
+  display: none;
+}
+
+.flex{
+    display: flex;
+}
+
