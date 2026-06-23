@@ -7,8 +7,9 @@ const totalAmount = document.getElementById('total_amount')
 const modal = document.getElementById('modal')
 const modalCloseBtn = document.getElementById('modal-close-btn')
 const completeBtn = document.getElementById('complete_btn')
+const formTextSec = document.getElementById('form-text-section')
 const paymentForm = document.getElementById('payment-form')
-const modalText = document.getElementById('modal-text')
+const thankYouContainer = document.getElementById('thankyou_message')
 
 feedContainer.addEventListener('click', (e) => {
     if(e.target.classList.contains('add_btn')){
@@ -140,29 +141,18 @@ paymentForm.addEventListener('submit', function(e){
     const paymentFormData = new FormData(paymentForm)
     const fullName = paymentFormData.get('fullName')
     
-    modalText.innerHTML = `
-    <div class="modal-inner-loading">
-        <img src="images/loading.svg" class="loading">
-        <p id="upload-text">Uploading your data to the dark web...</p>
-    </div>` 
-    
+   
     setTimeout(function(){
-        document.getElementById('upload-text').innerText = `
-        Payment Being Made...`
+        formTextSec.innerHTML = `
+        <img src="images/loading.svg" class="loading">
+        <p id="payment-text">Payment Being Made...</p>`
     }, 1500)
     
+    modal.style.display='none'
     
-    setTimeout(function(){
-        document.getElementById('modal-inner').innerHTML = `
-        <h2>Thanks <span class="modal-display-name">${fullName}</span>, you sucker! </h2>
-        <p>We just sold the rights to your eternal soul.</p>
-        <div class="idiot-gif">
-            <img src="images/pirate.gif">
-        </div>
-    `
-    modalCloseBtn.disabled = false
-    }, 3000)
-  
+      thankYouContainer.innerHTML = `
+        <h1>Thanks, ${fullName}! Your order is on it way!</h1>` 
+
 }) 
 
 function render(){

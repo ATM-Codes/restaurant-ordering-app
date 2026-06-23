@@ -1,6 +1,4 @@
 
-
-
 html, body {
     margin: 0;
     font-family: 'Smythe';
@@ -30,7 +28,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around; 
+    justify-content: space-around;
 }
 
 #order{
@@ -44,11 +42,11 @@ html, body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10rem;
   margin: 10px;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 3px solid #DEDEDE;
-  padding-bottom: 2rem;
+  width:100%;
+  padding: 2rem 2rem 2rem 2rem;
 }
 
 .pc_left_align{
@@ -57,11 +55,16 @@ html, body {
   align-items: center;
   margin-right: 10rem;
   justify-content: space-around;
+  padding-left: 5rem;
+  margin-left: 5rem;
+}
+
+.pc_right_align{
+
 }
 
 .product_details{
     text-align: left;
-    padding: 0px;
     margin-left: 20px;
     line-height: 10px;
 }
@@ -259,4 +262,9 @@ input[type=text], select {
   padding: auto;
   align-content: center;
   text-align: center;
+}
+
+.loading{
+    width: 100%; 
+    margin-top: 10px;
 }
